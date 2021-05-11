@@ -1,0 +1,4 @@
+<% if @updated %>
+  document.getElementById("quantity-<%= params[:id] %>").innerHTML = "quantity: <%= @updated_quantity %>"
+  document.getElementById("total_amount").innerHTML = "<%= session[:total_amount] %>"
+<%end%>  

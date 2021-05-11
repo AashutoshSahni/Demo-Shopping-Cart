@@ -1,0 +1,13 @@
+<h2>Select from below categories</h2>
+<%= button_to "Clothes", category_path(category: "clothes"), method: :get %><br>
+<%= button_to "Mobiles", category_path(category: "mobiles"), method: :get %><br>
+<%= button_to "Electronics", category_path(category: "electronics"), method: :get %><br>
+<%= button_to I18n.t('buttons.cart'), view_cart_path, method: :get %><br>
+<% if user_signed_in? %>
+  <%= button_to I18n.t('buttons.sell_items'), new_product_path, method: :get %><br>
+  <%= button_to I18n.t('buttons.my_items'), view_user_items_path, method: :get %><br>
+  <%= button_to I18n.t('buttons.my_orders'), orders_path, method: :get %><br> 
+  <%= button_to I18n.t('buttons.logout'), destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= button_to I18n.t('buttons.login'), new_user_session_path, method: :get %>  
+<%end%>

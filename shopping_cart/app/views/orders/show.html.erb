@@ -1,0 +1,20 @@
+<p>Order ID: <%= @order.id %></p>
+
+<p>Ordered on: <%= @order.order_date %></p>
+<p>Order amount: &#8377;<%= @order.order_amount %></p>
+<p>Shipping charges: &#8377;<%= @order.shipping_charges %></p>
+<p>Total amount paid: &#8377;<%= @order.total_amount_paid %></p>
+<p>Paid using card: <%= '*'*12 %><%= @order.card_number[12..] %></p>
+<br>
+<h3>Shipping details: </h3>
+<p>Address: <%= @order.address %></p>
+<p>Pin code: <%= @order.pin_code %></p>
+<p>City: <%= @order.city %></p>
+<p>State: <%= @order.state %></p>
+<br>
+<h3>Ordered items</h3>
+<ul>
+<% @order.ordered_items.all.each do |ordered_item| %>
+  <li><%= link_to ordered_item.description, view_ordered_item_path(ordered_item.id), methode: :get %></li>
+<%end%>
+</ul>

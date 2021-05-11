@@ -1,0 +1,47 @@
+<%= form_with model:product do |form| %>
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+    <% product.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div> 
+    <% end %>
+  </div>
+  
+  <div>
+    <%= form.label :price %><br>
+    <%= form.text_field :price %>
+    <% product.errors.full_messages_for(:price).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :category %><br>
+    <%= form.select :category, ['clothes', 'mobiles', 'electronics'] %>
+  </div>
+  
+    <div>
+    <%= form.label :available_quantity %><br>
+    <%= form.text_field :available_quantity %>
+    <% product.errors.full_messages_for(:available_quantity).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div> 
+  
+  <div>
+    <%= form.label :return_or_replacement_applicable_days %><br>
+    <%= form.select :return_or_replacement_applicable_days, options_for_select(0..30) %>
+  </div>  
+
+  <div>
+    <%= form.label :file %><br>
+    <%= form.file_field :file %>
+    <% product.errors.full_messages_for(:file).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>  
+
+  <div>
+    <%= form.submit I18n.t(:submit) %>
+  </div>
+<% end %>

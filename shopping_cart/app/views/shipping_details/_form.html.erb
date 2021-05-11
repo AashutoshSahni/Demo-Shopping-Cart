@@ -1,0 +1,53 @@
+<%= form_with model:shipping_detail do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% shipping_detail.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div> 
+    <% end %>
+  </div>
+  
+  <div>
+    <%= form.label :address %><br>
+    <%= form.text_area :address %>
+    <% shipping_detail.errors.full_messages_for(:address).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+   <div>
+    <%= form.label :pin_code %><br>
+    <%= form.text_field :pin_code %>
+    <% shipping_detail.errors.full_messages_for(:pin_code).each do |message| %>
+      <div><%= message %></div> 
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :city %><br>
+    <%= form.text_field :city %>
+    <% shipping_detail.errors.full_messages_for(:city).each do |message| %>
+      <div><%= message %></div> 
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :state %><br>
+    <%= form.text_field :state %>
+    <% shipping_detail.errors.full_messages_for(:state).each do |message| %>
+      <div><%= message %></div> 
+    <% end %>
+  </div>
+
+ <div>
+    <%= form.label :mobile_number %><br>
+    <%= form.text_field :mobile_number %>
+    <% shipping_detail.errors.full_messages_for(:mobile_number).each do |message| %>
+      <div><%= message %></div> 
+    <% end %>
+  </div>
+  
+ <div>
+    <%= form.submit I18n.t('buttons.submit') %>
+  </div>
+<% end %>

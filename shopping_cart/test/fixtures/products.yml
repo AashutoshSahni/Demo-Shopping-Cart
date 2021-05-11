@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  price: 
+  return_or_replacement_applicable_days: 1
+  quantity: 1
+  category: MyString
+  user: one
+
+two:
+  description: MyString
+  price: 
+  return_or_replacement_applicable_days: 1
+  quantity: 1
+  category: MyString
+  user: two

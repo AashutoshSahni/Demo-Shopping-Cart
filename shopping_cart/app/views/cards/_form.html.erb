@@ -1,0 +1,37 @@
+<%= form_with model:card do |form| %>
+  <div>
+    <%= form.label :card_owner %><br>
+    <%= form.text_field :card_owner %>
+    <% card.errors.full_messages_for(:card_owner).each do |message| %>
+      <div><%= message %></div> 
+    <% end %>
+  </div>
+  
+  <div>
+    <%= form.label :card_number %><br>
+    <%= form.text_field :card_number %>
+    <% card.errors.full_messages_for(:card_number).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+   <div>
+    <%= form.label :cvv %><br>
+    <%= form.text_field :cvv %>
+    <% card.errors.full_messages_for(:cvv).each do |message| %>
+      <div><%= message %></div> 
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :expiry_date %><br>
+    <%= form.text_field :expiry_date %>
+    <% card.errors.full_messages_for(:expiry_date).each do |message| %>
+      <div><%= message %></div> 
+    <% end %>
+  </div>
+  
+ <div>
+    <%= form.submit I18n.t('buttons.submit') %>
+  </div>
+<% end %>

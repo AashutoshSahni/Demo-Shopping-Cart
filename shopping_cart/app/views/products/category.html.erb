@@ -1,0 +1,28 @@
+<h1><%= @category %></h1>
+<%# session.destroy %>
+<% if @category_products.empty? %>
+  <p>No items here right now</p>
+<%end%>
+<% @category_products.each do |product| %>
+  <div>
+    <p><%= product.description %></p>
+    <p>&#8377;<%= product.price %></p>
+    <img src="<%= product.file %>"></img>
+    <p>Return or replace within <%= product.return_or_replacement_applicable_days %> days</p>
+    <p>Seller Name: <%= product.seller_name %></p>
+   
+    <% if user_signed_in? and product.user_id == current_user.id %>
+      <%= button_to I18n.t('buttons.edit'), edit_product_path(product.id), method: :get %>
+    <% elsif (user_signed_in? and current_user.cart_items.find_by product_id: product.id)  or (!session[:items].nil? and session[:items].has_key? product.id.to_s) %>
+     <%= button_to I18n.t('buttons.cart'), view_cart_path, method: :get %>
+    <% else %>
+      <% if product.available_quantity > 0 %>
+        <%=  button_to I18n.t('buttons.add_to_cart'), cart_path(product.id), remote: true %>
+      <% else %>
+        <p><i>Out of stocks</i></p>
+      <%end%>
+    <%end%>   
+  </div>
+<%end%>
+
+

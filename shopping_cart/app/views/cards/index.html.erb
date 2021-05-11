@@ -1,0 +1,12 @@
+<p>Amount to pay : <%= session[:total_amount] + session[:shipping_fee] %></p>
+<% if current_user.cards.all.size > 0 %>
+  <h3>Select from below debit cards</h3>
+  <% current_user.cards.all.each do |card| %>
+    <div>
+      <p><%= card.card_owner %></p>
+      <p><%= '*'*12 %><%= card.card_number[12..] %></p>
+      <%= button_to I18n.t('buttons.select_proceed'), create_order_path(shipping_details_id: session[:shipping_details_id], card_id: card.id), method: :post %><br>
+    </div>
+  <%end%>  
+<%end%>
+<%= button_to I18n.t('buttons.new_card'), new_card_path, method: :get %>  

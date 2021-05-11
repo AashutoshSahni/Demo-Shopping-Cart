@@ -1,0 +1,9 @@
+<h1>My Orders</h1>
+<% @orders.reverse.each do |order| %>
+ <div>
+  <p>Order id: <%= order.id %></p>
+  <p>Order amount: <%= order.order_amount %></p>
+  <p>Date ordered: <%= order.order_date %></p>
+  <%= button_to I18n.t('buttons.show'), view_order_path(order.id), method: :get %>
+ </div>
+<%end%>

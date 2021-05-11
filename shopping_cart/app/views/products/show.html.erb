@@ -1,0 +1,9 @@
+  <p><%= @product.description %></p>
+  <p>&#8377;<%= @product.price %></p>
+  <img src="<%= @product.file %>"></img>
+  <p>Available quantity: <%= @product.available_quantity %></p>
+  <p>Return or replace within <%= @product.return_or_replacement_applicable_days %> days</p>
+  <p>Seller Name: <%= @product.seller_name %></p>
+  <br>
+  <%= button_to I18n.t('buttons.edit'), edit_product_path(@product.id), method: :get %>
+ 

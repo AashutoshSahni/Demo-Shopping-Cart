@@ -1,0 +1,11 @@
+<% if current_user.shipping_details.all.size > 0 %>
+  <h3>Select from below address</h3>
+  <% current_user.shipping_details.all.each do |shipping_detail| %>
+    <div>
+      <p><%= shipping_detail.name %></p>
+      <p><%= shipping_detail.address %></p>
+      <%= button_to I18n.t('buttons.select_proceed'), select_card_path(shipping_details_id: shipping_detail.id ), method: :get %><br>
+    </div>
+  <%end%>  
+<%end%>
+<%= button_to I18n.t('buttons.new_shipping_detail'), new_shipping_detail_path, method: :get %>

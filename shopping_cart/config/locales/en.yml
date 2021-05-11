@@ -1,0 +1,68 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  errors:
+    not_valid: "is not valid"
+  buttons:
+    logout: "Logout"
+    login: "Login"
+    signup: "Sign Up"
+    login_page: "Login Page"
+    my_items: "My Items"
+    my_orders: "My orders"
+    sell_items: "Sell Item"
+    select_proceed: "Select and proceed"
+    show: "Show"
+    edit: "Edit"
+    submit: "Submit"
+    new_shipping_detail: "Add new shipping detail"
+    new_card: "Add new card"
+    clear_cart: "Clear Cart"
+    remove_item: "Remove Item"
+    proceed_to_buy: "Proceed to buy"
+    cart: "Cart"
+    add_to_cart: "Add to cart"
+    increase: "+"
+    decrease: "-"
+  models:
+    attributes:
+      product_details: "product_details"
+      description: "description'"
+      price: "price"
+      id: "id"
+      url: "url"
+      file: "file"
+      total_amount: "total amount"
+      return_replacement: "return_or_replacement_applicable_days"
+      seller_name: "seller_name"
+      available_quantity: "available_quantity"
+      quantity: "quantity"

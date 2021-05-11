@@ -1,0 +1,53 @@
+<h2>Cart</h2>
+<% session[:total_amount] = 0.0 %>
+<% session[:shipping_charges] = 40.0 %>
+<% if user_signed_in? %>
+  <% if current_user.cart_items.all.size == 0 %>
+    <p>cart is empty</p>
+  <% else %>
+    <% cart_items = current_user.cart_items.all %>
+    <div id = "container">
+      <% cart_items.each do |cart_item| %>
+        <div id = "div-<%= cart_item.id %>">
+          <p><%= cart_item.description %></p>
+          <p><%= cart_item.price %></p>
+          <img src="<%= cart_item.file %>"></img>
+          <p id = "quantity-<%= cart_item.id %>">quantity:<%= cart_item.quantity %></p>
+          <%= button_to "+", increment_path(cart_item.id), method: :put, remote: true %>
+          <%= button_to "-", decrement_path(cart_item.id), method: :put, remote: true %>
+          <%= button_to I18n.t('buttons.remove_item'), destroy_cart_item_path(cart_item.id), method: :delete, remote: true %>
+          <% session[:total_amount] += cart_item.price * cart_item.quantity %>
+        </div>
+      <%end%>
+      <b>Total Amount : <p id="total_amount"><%= session[:total_amount] %></p></b> 
+      <p>Shipping charges : <%= session[:shipping_charges] %></p> 
+      <%= button_to I18n.t('buttons.clear_cart'), clear_cart_path, method: :get, remote: true %>
+      <%= button_to I18n.t('buttons.proceed_to_buy'), shipping_details_path, method: :get %>
+    </div> 
+  <%end%>  
+<% else %>
+  <% if session[:items].nil? %>
+    <p>cart is empty</p>
+  <% else %>
+    <div id = "container">
+      <% session[:items].each do |item_id,item| %>
+        <div id = "div-<%= item_id %>">
+        <% product_details = item[I18n.t('models.attribute.product_details')] %>
+          <p><%= product_details[I18n.t('models.attribute.description')] %></p>
+          <p><%= product_details[I18n.t('models.attribute.price')] %></p>
+          <img src="<%= product_details[I18n.t('models.attribute.file')][I18n.t('models.attribute.url')] %>"></img>
+          <p id = "quantity-<%= item_id %>">quantity:<%= item[I18n.t('models.attribute.quantity')] %></p>
+          <%= button_to 'buttons.increase', increment_path(item_id), method: :put, remote: true %>
+          <%= button_to 'buttons.decrease', decrement_path(item_id), method: :put, remote: true %>
+          <%= button_to I18n.t('buttons.remove_item'), destroy_cart_item_path(item_id), method: :delete, remote: true %>
+          <% session[:total_amount] += product_details[I18n.t('models.attribute.price')].to_f * item[I18n.t('models.attribute.quantity')].to_f %>
+        </div>
+        <br>
+      <%end%>
+      <b>Total Amount : <p id="total_amount"><%= session[:total_amount] %></p></b>
+      <%= button_to I18n.t('buttons.clear_cart'), clear_cart_path, method: :get, remote: true %>
+      <%= button_to I18n.t('buttons.proceed_to_buy'), shipping_details_path, method: :get %>
+    <%end%> 
+  </div>  
+<%end%>
+
